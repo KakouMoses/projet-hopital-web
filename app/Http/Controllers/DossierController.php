@@ -77,7 +77,11 @@ class DossierController extends Controller
     public function findByNom(Request $request)
     {
         $nom = $request->input('nom');
-        $dossier = Dossier::where('nom', $nom)->get()->toJson();
+        $matching = Dossier::where('nom', $nom)->get('numerodossier');
+        $dossier = [];
+        foreach($matching as $item){
+            Dossier::show($item);
+        }
         return $dossier;
     }
 }
