@@ -12,7 +12,7 @@ class Examen extends Model
     protected $table='examen';
     public $incrementing = false;
     public $keyType = 'string';
-    protected $fillable = ['libelleexam', 'dateexam'];
+    protected $fillable = ['libelleexam', 'dateexam', 'raison', 'resultats'];
 
     public function consultation(){
         return $this->belongsTo(Consultation::class);

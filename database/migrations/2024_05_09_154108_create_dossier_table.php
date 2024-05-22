@@ -25,6 +25,8 @@ return new class extends Migration
             $table->string('email', 30)->nullable();
             $table->string('groupesanguin', 4)->nullable();
             $table->text('antecedents')->nullable();
+            $table->timestamp('created_at');
+            $table->timestamp('updated_at');
 
             $table->unique(['numerodossier'], 'dossier_pk');
         });

@@ -19,7 +19,9 @@ return new class extends Migration
             $table->date('dateexam')->nullable();
             $table->text('raison')->nullable();
             $table->text('resultatsexam')->nullable();
-
+            $table->timestamp('created_at');
+            $table->timestamp('updated_at');
+            
             $table->primary(['idconsultation', 'idexam']);
             $table->unique(['idconsultation', 'idexam'], 'necessiter_pk');
         });

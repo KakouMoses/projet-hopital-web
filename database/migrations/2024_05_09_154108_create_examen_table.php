@@ -18,6 +18,10 @@ return new class extends Migration
             $table->string('libelleexam', 80)->nullable();
             $table->date(column:'dateexam')->nullable();
             $table->unique(['idexam'], 'examen_pk');
+            $table->text('raison')->nullable();
+            $table->text('resultats')->nullable();
+            $table->timestamp('created_at');
+            $table->timestamp('updated_at');
         });
     }
 

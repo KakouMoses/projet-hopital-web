@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('idconsultation', 30)->index('intervenir2_fk');
             $table->string('idspecialiste', 30)->index('intervenir_fk');
             $table->string('tache', 50)->nullable();
+            $table->timestamp('created_at');
+            $table->timestamp('updated_at');
 
             $table->primary(['idconsultation', 'idspecialiste']);
             $table->unique(['idconsultation', 'idspecialiste'], 'intervenir_pk');

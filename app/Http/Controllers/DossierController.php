@@ -23,15 +23,28 @@ class DossierController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+            'nom' => 'required|string|max:255',
+            'prenom' => 'required|string|max:255',
+            'datenaissance' => 'required|date',
+            'lieunaissance' => 'required|string|max:255',
+            'sexe' => 'required|string|max:10',
+            'profession' => 'required|string|max:255',
+            'contact' => 'required|string|max:20',
+            'email' => 'nullable|email|max:255',
+            'groupesanguin' => 'nullable|string|max:3',
+            'antecedents' => 'nullable|string',
+        ]);
         $numeroDossier = IdentifiantService::genererIdentifiant('PAT-') ;
         $data = $request->all();
         $data['numeroDossier'] = $numeroDossier;
-        $dossier = Dossier::create($data);
-        return Response($dossier);
+        Dossier::create($data);
+        return redirect()->route('dossiers')->with('success', 'Dossier créé avec succès.');
     }
 
     /**
@@ -78,10 +91,8 @@ class DossierController extends Controller
     {
         $nom = $request->input('nom');
         $matching = Dossier::where('nom', $nom)->get('numerodossier');
-        $dossier = [];
         foreach($matching as $item){
             Dossier::show($item);
         }
-        return $dossier;
     }
 }

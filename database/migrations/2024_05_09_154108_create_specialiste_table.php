@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('prenomspecialiste', 50)->nullable();
             $table->string('specialite', 50)->nullable();
             $table->string('grade', 30)->nullable();
+            $table->timestamp('created_at');
+            $table->timestamp('updated_at');
 
             $table->unique(['idspecialiste'], 'specialiste_pk');
         });

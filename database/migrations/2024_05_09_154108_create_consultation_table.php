@@ -23,7 +23,9 @@ return new class extends Migration
             $table->date('datecontrole')->nullable();
             $table->text('constantes')->nullable();
             $table->text('observations')->nullable();
-
+            $table->timestamp('created_at');
+            $table->timestamp('updated_at');
+            
             $table->unique(['idconsultation'], 'consultation_pk');
         });
     }
